@@ -1,0 +1,19 @@
+@use "../abstracts";
+
+.footer {
+    width: 100%;
+    height: 66px;
+    position: relative;
+
+    @include abstracts.screen(md) {
+        display: none;
+    }
+
+    &__row {
+        padding: 25px 0;
+        text-align: center;
+        background: var(--footer-bg-color);
+        color: var(--footer-text-color);
+    }
+
+}

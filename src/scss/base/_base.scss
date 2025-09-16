@@ -1,0 +1,41 @@
+* {
+    -webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Public Sans', sans-serif;
+}
+
+/* reset tags style default */
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+input,
+textarea,
+button {
+    background: transparent;
+}
+
+a, label, img, button, input, textarea, select {
+    outline: none;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit; /* remove default styling of tag a when displayed on mobile */
+}
+
+.wrapper {
+    max-width: 100vw;
+    max-height: 100vh;
+}

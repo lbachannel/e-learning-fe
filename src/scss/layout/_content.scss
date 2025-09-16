@@ -1,0 +1,14 @@
+@use "../abstracts";
+
+.content {
+    width: calc(100% - 258px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: var(--content-bg-color);
+    color: var(--content-text-color);
+
+    @include abstracts.screen(md) {
+        max-width: 100%;
+        width: 100%;
+    }
+}

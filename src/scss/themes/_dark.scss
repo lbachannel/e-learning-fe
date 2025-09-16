@@ -1,0 +1,53 @@
+html.dark {
+    // root
+    --text-color: #a0a0a0;
+    --logo-text-color: #ffc107;
+    --icon-default-color: brightness(0) saturate(100%) invert(68%) sepia(25%) saturate(28%) hue-rotate(2deg) brightness(93%) contrast(80%);
+    --background-primary-color: #1e1e1e;
+    // header
+    --header-logo-bg-color: #1e1e1e;
+    --header-logo-text-color: transparent; 
+    --header-logo-text-bg-image-color: linear-gradient(to right, #ffc107 0%, #dec479 100%);
+    
+    --header-input-icon-color: brightness(0) saturate(100%) invert(68%) sepia(25%) saturate(28%) hue-rotate(2deg) brightness(93%) contrast(80%);
+    --header-input-bg-color: #1e1e1e;
+    --header-logo-box-shadow: none;
+    --header-input-border-color: #333;
+    --header-input-focus-border-color: #333;
+    --header-input-focus-box-shadow: none;
+    --header-input-clear-btn-color: brightness(0) saturate(100%) invert(69%) sepia(99%) saturate(1034%) hue-rotate(354deg) brightness(104%) contrast(101%);
+    --header-menu-bg-color: #121212;
+    --header-menu-border-bottom: #333;
+    --header-menu-hover-item-color: #ffc1072b;
+    --header-user-border-left-color: #333;
+    --header-settings-username-color: #fff;
+
+    --header-dropdown-menu-bg-color: #ffc107;
+    --header-dropdown-item-color: #141414;
+    --header-dropdown-item-icon-color: brightness(0) saturate(100%) invert(0%) sepia(2%) saturate(2860%) hue-rotate(10deg) brightness(87%) contrast(84%);
+    --header-dropdown-item-hover-color: #d6b03d;
+    --header-dropdown-item-text-hover-color: #141414;
+    --header-dropdown-item-icon-hover-color: brightness(0) saturate(100%) invert(0%) sepia(2%) saturate(4165%) hue-rotate(358deg) brightness(111%) contrast(84%);
+    // sidebar
+    --sidebar-bg-color: #1e1e1e;
+    --sidebar-active-line-color: #ffc107;
+    --sidebar-active-text-color: #ffc107;
+    --sidebar-active-icon-color: brightness(0) saturate(100%) invert(87%) sepia(16%) saturate(6748%) hue-rotate(348deg) brightness(101%) contrast(109%);
+    --sidebar-active-after-color: #3a3a3a;
+    --sidebar-active-after-opacity: 1;
+    --sidebar-item-hover-color: #2c2c2c;
+    --sidebar-item-link-text-hover-color: #f0f0f0;
+    --sidebar-item-link-icon-hover-color: brightness(0) saturate(100%) invert(100%) sepia(3%) saturate(940%) hue-rotate(197deg) brightness(116%) contrast(88%);
+
+    --sidebar-box-shadow: none;
+    
+    
+    
+    // content
+    --content-bg-color: #121212;
+    --content-title-color: #f0f0f0;
+    --content-text-color: #a0a0a0;
+    // footer
+    --footer-bg-color: #1e1e1e;
+    --footer-text-color: #888;
+}

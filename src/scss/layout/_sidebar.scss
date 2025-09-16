@@ -1,0 +1,126 @@
+@use "../abstracts";
+
+.sidebar {
+    position: sticky;
+    top: 50px;
+    left: 0;
+    width: 258px;
+    min-height: calc(100vh - 130px);
+    z-index: 1;
+    box-shadow: var(--sidebar-box-shadow);
+    flex-shrink: 0;
+    align-self: flex-start;
+    background: var(--sidebar-bg-color);
+
+    @include abstracts.screen(md) {
+        position: fixed;
+        top: unset;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 50px;
+        padding: 0;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        
+        @include abstracts.screen(md) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+    }
+
+    &__item {
+        position: relative;
+
+        @include abstracts.screen(md) {
+            min-width: 85px;
+        }
+    
+
+        &--active > &-link {
+            color: var(--sidebar-active-text-color);
+        }
+
+        &--active > &-link::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+            z-index: -1;
+            opacity: var(--sidebar-active-after-opacity);
+            background: var(--sidebar-active-after-color);
+
+            @include abstracts.screen(md) {
+                background: none;
+            }
+        }
+
+        &--active &-link-icon {
+            filter: var(--sidebar-active-icon-color);
+        }
+
+    }
+
+    &__item-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 20px;
+        color: var(--text-color);
+        font-size: 1.6rem;
+
+        @include abstracts.screen(md) {
+            flex-direction: column;
+            gap: 0px;
+            padding: 9px 20px;
+            font-size: 1.3rem;
+        }
+
+        &-icon {
+            width: 15px;
+            height: 15px;
+            filter: var(--icon-default-color);
+
+            @include abstracts.screen(md) {
+                width: 20px;
+                height: 20px;
+            }
+
+        }
+        transition: color 0.25s;
+    }
+
+    &__item:hover {
+        cursor: pointer;
+        background: var(--sidebar-item-hover-color);
+        @include abstracts.screen(md) {
+            background: none;
+        }
+    }
+
+    &__item:not(.sidebar__item--active):hover > &__item-link {
+        color: var(--sidebar-item-link-text-hover-color);
+        filter: var(--sidebar-item-link-icon-hover-color);
+    }
+
+    &__active-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 3px;
+        background: var(--sidebar-active-line-color);
+        transition: transform 0.25s ease, height 0.25s;
+        
+        @include abstracts.screen(md) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+html {
+    // root
+    --text-color: #141414;
+    --logo-text-color: #141414;
+    --icon-default-color: brightness(0) saturate(100%) invert(0%) sepia(9%) saturate(3033%) hue-rotate(355deg) brightness(97%) contrast(84%);
+    --background-primary-color: #fff;
+    // header
+    --header-logo-bg-color: none;
+    --header-logo-box-shadow: 1px 0 0 0px rgb(240 240 240);
+    --header-logo-text-color: transparent; 
+    --header-logo-text-bg-image-color: linear-gradient(to right, #ff1e56 0%, #0096ff 100%);
+
+
+    --header-input-bg-color: #fff;
+    --header-input-icon-color: brightness(0) saturate(100%) invert(0%) sepia(9%) saturate(3033%) hue-rotate(355deg) brightness(97%) contrast(84%);
+    --header-input-border-color: #d2d1d6;
+    --header-input-focus-border-color: #1890ff;
+    --header-input-focus-box-shadow: 0 0 4px rgba(24, 144, 255, 0.6);
+    --header-input-clear-btn-color: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(2058%) hue-rotate(190deg) brightness(100%) contrast(102%);
+    --header-menu-bg-color: none;
+    --header-menu-border-bottom: none;
+    --header-menu-border-left: none;
+    --header-menu-hover-item-color: #e9ecef;
+    --header-user-border-left-color: #e9ecef;
+    --header-settings-username-color: #141414;
+
+    --header-dropdown-menu-bg-color: #fff;
+    --header-dropdown-item-color: #666;
+    --header-dropdown-item-icon-color: brightness(0) saturate(100%) invert(45%) sepia(1%) saturate(1872%) hue-rotate(329deg) brightness(87%) contrast(83%);
+    --header-dropdown-item-hover-color: #f3f3f3;
+    --header-dropdown-item-text-hover-color: #141414;
+    --header-dropdown-item-icon-hover-color: brightness(0) saturate(100%) invert(0%) sepia(2%) saturate(4165%) hue-rotate(358deg) brightness(111%) contrast(84%);
+
+    --themes-slider-bg-color: #ccc;
+    --themes-slider-before-bg-color: #ffc107;
+    // sidebar
+    --sidebar-bg-color: #fff;
+    --sidebar-active-line-color: #1890ff;
+    --sidebar-active-text-color: #1890ff;
+    --sidebar-active-icon-color: brightness(0) saturate(100%) invert(45%) sepia(30%) saturate(5258%) hue-rotate(192deg) brightness(102%) contrast(102%);
+    --sidebar-active-after-color: #1890ff;
+    --sidebar-active-after-opacity: 0.05;
+    --sidebar-item-hover-color: #f3f3f3;
+    --sidebar-item-link-text-hover-color: #141414;
+    --sidebar-item-link-icon-hover-color: brightness(0) saturate(100%) invert(0%) sepia(3%) saturate(374%) hue-rotate(326deg) brightness(87%) contrast(85%);
+    --sidebar-box-shadow: 1px 0 0 0px rgb(240 240 240);
+    // content
+    --content-bg-color: #f3f3f3;
+    --content-text-color: #141414;
+    // footer
+    --footer-bg-color: #fff;
+    --footer-text-color: #141414;
+}

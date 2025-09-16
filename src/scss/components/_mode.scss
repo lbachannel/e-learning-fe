@@ -1,0 +1,43 @@
+.themes {
+    position: relative;
+    display: inline-block;
+    width: 37px;
+    height: 18px;
+
+    &-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--themes-slider-bg-color);
+        border-radius: 34px;
+        transition: 0.25s;
+
+        &::before {
+            position: absolute;
+            content: "🌞";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 14px;
+            height: 14px;
+            font-size: 1.2rem;
+            left: 3px;
+            bottom: 2px;
+            background: var(--background-primary-color);
+            border-radius: 50%;
+            transition: 0.25s ease-in-out;
+        }
+    }
+
+    &-input:checked + .themes-slider {
+        background: var(--themes-slider-before-bg-color);
+    }
+
+    &-input:checked + .themes-slider::before {
+        transform: translateX(17px);
+        content: "🌙";
+    }
+}

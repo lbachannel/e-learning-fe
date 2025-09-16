@@ -1,0 +1,208 @@
+@use "../abstracts";
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    min-height: 50px;
+    background: var(--background-primary-color);
+    color: var(--text-color);
+
+    & .logo {
+        display: flex;
+        align-items: center;
+        width: 238px;
+        gap: 10px;
+        padding-left: 20px;
+        box-shadow: var(--header-logo-box-shadow);
+        flex-shrink: 0;
+        background: var(--header-logo-bg-color);
+
+        @include abstracts.screen(lg) {
+            width: 130px;
+            box-shadow: none;
+            border-bottom: 1px solid var(--header-menu-border-bottom);
+        }
+
+        @include abstracts.screen(md) {
+            display: none;
+        }
+
+        
+        & .logo__icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        & .logo__text {
+            color: var(--header-logo-text-color);
+            background-clip: text;
+            background-image: var(--header-logo-text-bg-image-color);
+            --webkit-background-clip: text;
+            --webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        width: 350px;
+        height: 50px;
+
+        @include abstracts.screen(sm) {
+            width: 210px;
+        }
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-left: 30px;
+        min-width: 270px;
+        max-height: 32px;
+        @include abstracts.screen(md) {
+            // margin-left: 10px;
+            // min-width: 180px;
+            display: none;
+        }
+    }
+
+    &__input-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 11px;
+        width: 13px;
+        height: 13px;
+        z-index: 1;
+        filter: var(--header-input-icon-color);
+    }
+
+    &__input {
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        box-sizing: border-box;
+
+        padding: 0px 32px 3px 33px;
+        border-radius: 5px;
+        border: 1px solid var(--header-input-border-color);
+        background: var(--header-input-bg-color);
+        font-size: 1.6rem;
+
+        &:focus {
+            border-color: var(--header-input-focus-border-color); 
+            box-shadow: var(--header-input-focus-box-shadow);
+        }
+
+        &-clear-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            opacity: 0.8;
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+            z-index: 1;
+            filter: var(--header-input-clear-btn-color);
+        }
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        width: calc(100% - 238px);
+        padding-right: 30px;
+        border-bottom: 1px solid var(--header-menu-border-bottom);
+        background: var(--header-menu-bg-color);
+
+        @include abstracts.screen(lg) {
+            padding-right: 15px;
+            width: calc(100% - 157px);
+            background: none;
+            border-left: none;
+        }
+
+        @include abstracts.screen(md) {
+            padding-right: 10px;
+            width: 100%;
+        }
+    }
+
+    &__settings {
+        width: 100%;
+        height: 50px;
+
+        @include abstracts.screen(sm) {
+            width: calc(100% - 210px);
+        }
+
+        &-list {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            
+            gap: 30px;
+
+            @include abstracts.screen(lg) {
+                gap: 15px;
+                padding-right: 15px;
+            }
+
+            @include abstracts.screen(md) {
+                padding-right: 15px;
+            }
+
+            &-item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                cursor: pointer;
+                @include abstracts.screen(md) {
+                    &:nth-child(2) {
+                        margin-left: 20px;
+                    }
+                }
+
+                &:not(:nth-child(2)) span:hover {
+                    background: var(--header-menu-hover-item-color);
+                    border-radius: 5px;
+                }
+
+                & span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 19px;
+                    max-height: 19px;
+                    padding: 5px;
+
+                }
+            }
+
+            &-item-icon {
+                width: 16px;
+                height: 16px;
+                filter: var(--icon-default-color);
+            }
+        }
+
+        & .username {
+            font-size: 1.5rem;
+            color: var(--header-settings-username-color);
+            padding: 3px 20px;
+            border-left: 1px solid var(--header-user-border-left-color);
+            cursor: pointer;
+        }
+
+        & .username:hover {
+            opacity: 0.9;
+        }
+    }
+}
