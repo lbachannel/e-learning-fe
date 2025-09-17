@@ -1,6 +1,7 @@
 "use client";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type TSession = {
@@ -38,13 +39,13 @@ const UserProfile = (props: TSession) => {
             <ul className={`dropdown__menu ${isOpen ? 'dropdown__menu--show' : 'dropdown__menu--hide'}`}>
                 <li className="dropdown__item dropdown__item-1">
                     Change password
-                    <img src="icons/change-pass.svg" alt="change pass" className="dropdown__item-icon" />
+                    <Image width={15} height={15} src="icons/change-pass.svg" alt="change pass" className="dropdown__item-icon" />
                 </li>
                 <li
                     className="dropdown__item dropdown__item-2"
                     onClick={() => signOut()}>
                     Logout
-                    <img src="icons/logout.svg" alt="logout" className="dropdown__item-icon" />
+                    <Image width={15} height={15} src="icons/logout.svg" alt="logout" className="dropdown__item-icon" />
                 </li>
             </ul>
         </>

@@ -17,10 +17,17 @@ declare global {
         access_token: string;
     }
 
-    interface IRegister {
+    interface IRegisterRes {
         _id: string;
         codeExpired: string;
     }
+
+    interface IRegisterReq {
+        name: string;
+        username: string;
+        password: string;
+    }
+
 
     interface ICodeExpired {
         codeExpired: string;
@@ -28,5 +35,24 @@ declare global {
 
     interface IRetryVerification {
         _id: string;
+    }
+
+    interface IPropsModalResendMail {
+        isModalOpen: boolean;
+        setIsModalOpen: (open: boolean) => void;
+        userEmail: string;
+    }
+
+    interface IResendMail {
+        userEmail: string;
+    }
+
+    interface IVerifyAccount {
+        _id: string;
+        code: string
+    }
+
+    interface IVerifyEmail {
+        codeId: string;
     }
 }

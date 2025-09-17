@@ -1,5 +1,6 @@
 'use client';
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -17,7 +18,7 @@ const AuthComponent = ({
             </Link>
             <div className="auth-layout__top">
                 <h2 className="auth-layout__title">{title}</h2>
-                <img src="../icons/logo.svg" alt="logo" className="auth-layout__logo" />
+                <Image width={77} height={51} src="../icons/logo.svg" alt="logo" className="auth-layout__logo" />
             </div>
             {children}
         </div>

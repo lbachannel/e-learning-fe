@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -31,7 +32,7 @@ const SidebarLayout = () => {
                 transition: mounted ? 'transform 0.25s ease, height 0.25s' : 'none'
             });
         }
-    }, [pathname]);
+    }, [pathname, mounted]);
 
 
     return (
@@ -40,7 +41,7 @@ const SidebarLayout = () => {
                 <li className={`sidebar__item ${pathname === "/intro" ? "sidebar__item--active" : ""}`}>
                     <Link href="/intro" className="sidebar__item-link" data-link>
                         <span>
-                            <img src="icons/home.svg" alt="" className="sidebar__item-link-icon" />
+                            <Image width={15} height={15} src="icons/home.svg" alt="" className="sidebar__item-link-icon" />
                         </span>
                         Intro
                     </Link>
@@ -49,7 +50,7 @@ const SidebarLayout = () => {
                 <li className={`sidebar__item ${pathname === "/about" ? "sidebar__item--active" : ""}`}>
                     <Link href="/about" className="sidebar__item-link" data-link>
                         <span>
-                            <img src="icons/book.svg" alt="" className="sidebar__item-link-icon" />
+                            <Image width={15} height={15} src="icons/book.svg" alt="" className="sidebar__item-link-icon" />
                         </span>
                         About
                     </Link>
@@ -58,7 +59,7 @@ const SidebarLayout = () => {
                 <li className={`sidebar__item ${pathname === "/contact" ? "sidebar__item--active" : ""}`}>
                     <Link href="/contact" className="sidebar__item-link" data-link>
                         <span>
-                            <img src="icons/contact.svg" alt="" className="sidebar__item-link-icon" />
+                            <Image width={15} height={15} src="icons/contact.svg" alt="" className="sidebar__item-link-icon" />
                         </span>
                         Contact
                     </Link>

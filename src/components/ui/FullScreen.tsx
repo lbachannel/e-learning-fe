@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
+'use client';
+
+import Image from "next/image";
 
 const Fullscreen = () => {
-    const [isFullscreen, setIsFullscreen] = useState(false);
-
-    useEffect(() => {
-        const handleFullscreenChange = () => {
-            setIsFullscreen(!!document.fullscreenElement);
-        }
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    }, [])
     // Header fullscreen
     const toggleFullscreen = () => {
         if (!document.fullscreenElement) {
@@ -21,7 +14,9 @@ const Fullscreen = () => {
 
     return (
         <span onClick={toggleFullscreen}>
-            <img
+            <Image
+                width={16}
+                height={16}
                 src="icons/fullscreen.svg"
                 alt=""
                 className="header__settings-list-item-icon" />

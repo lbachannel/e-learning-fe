@@ -3,9 +3,10 @@ import { retryVerifyAPI, verifyAccountAPI } from "@/services/api";
 import { useHasMounted } from "@/utils/customHook";
 import { SmileOutlined, SolutionOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons";
 import { App, Form, Input, Modal, Steps } from "antd";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
-const ModalResendMail = (props: any) => {
+const ModalResendMail = (props: IPropsModalResendMail) => {
     const { isModalOpen, setIsModalOpen, userEmail } = props;
     const [current, setCurrent] = useState(0);
     const [ userId, setUserId ] = useState('');
@@ -17,7 +18,7 @@ const ModalResendMail = (props: any) => {
         if (userEmail) {
             form.setFieldValue('userEmail', userEmail);
         }
-    }, [userEmail])
+    }, [userEmail, form])
     
     if (!hasMounted) {
         return <></>
@@ -32,47 +33,63 @@ const ModalResendMail = (props: any) => {
     };
 
     // step 0
-    const handleResendMail = async (values: any) => {
+    const handleResendMail = async (values: IResendMail) => {
         const { userEmail } = values;
         try {
             const response = await retryVerifyAPI(userEmail);
             if (response?.data?.statusCode === 201) {
-                setUserId(response.data?.data?._id!);
+                if (response.data?.data?._id) {
+                    setUserId(response.data?.data?._id);
+                }
                 setCurrent(1);
             }
-        } catch (error: any) {
-            if (error.response.data.statusCode === 400) {
-                notification.error({
-                    message: 'Retry verification failed',
-                    description: error.response.data.message
-                })
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error?.response?.data?.statusCode === 400) {
+                    notification.error({
+                        message: 'Retry verification failed',
+                        description: error.response.data.message
+                    })
+                } else {
+                    notification.error({
+                        message: 'Retry verification failed',
+                        description: error?.response?.data?.message || 'Something went wrong' 
+                    })
+                }
             } else {
                 notification.error({
-                    message: 'Retry verification failed',
-                    description: error?.response?.data?.message || 'Something went wrong' 
-                })
+                    message: "Retry verification failed",
+                    description: "Unexpected error",
+                });
             }
         }
     }
 
     // step 1
-    const handleVerifyEmail = async (values: any) => {
+    const handleVerifyEmail = async (values: IVerifyEmail) => {
         const { codeId } = values;
         try {
             const response = await verifyAccountAPI(userId, codeId);
             if (response?.data?.statusCode === 201) {
                 setCurrent(2);
             }
-        } catch (error: any) {
-            if (error.response.data.statusCode === 400) {
-                notification.error({
-                    message: 'Verification failed',
-                    description: error.response.data.message
-                })
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error?.response?.data?.statusCode === 400) {
+                    notification.error({
+                        message: 'Verification failed',
+                        description: error.response.data.message
+                    })
+                } else {
+                    notification.error({
+                        message: 'Verification failed',
+                        description: error?.response?.data?.message || 'Something went wrong'
+                    })
+                }
             } else {
                 notification.error({
                     message: 'Verification failed',
-                    description: error?.response?.data?.message || 'Something went wrong'
+                    description: 'Unexpected error'
                 })
             }
         }

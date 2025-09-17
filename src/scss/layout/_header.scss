@@ -13,8 +13,8 @@
     & .logo {
         display: flex;
         align-items: center;
-        width: 238px;
         gap: 10px;
+        width: 238px;
         padding-left: 20px;
         box-shadow: var(--header-logo-box-shadow);
         flex-shrink: 0;
@@ -28,12 +28,6 @@
 
         @include abstracts.screen(md) {
             display: none;
-        }
-
-        
-        & .logo__icon {
-            width: 20px;
-            height: 20px;
         }
 
         & .logo__text {
@@ -76,8 +70,6 @@
         top: 50%;
         transform: translateY(-50%);
         left: 11px;
-        width: 13px;
-        height: 13px;
         z-index: 1;
         filter: var(--header-input-icon-color);
     }
@@ -187,8 +179,6 @@
             }
 
             &-item-icon {
-                width: 16px;
-                height: 16px;
                 filter: var(--icon-default-color);
             }
         }

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import duration from "dayjs/plugin/duration";
 import { SyncOutlined } from "@ant-design/icons";
+import axios from "axios";
 dayjs.extend(duration);
 
 type TId = {
@@ -33,7 +34,9 @@ const VerifyComponent = (props: TId) => {
                     const response = await getCodeExpired(id);
                     if (response?.data?.statusCode === 201) {
                         const endTimeFromDB = response.data?.data?.codeExpired;
-                        endTime = response.data?.data?.codeExpired!;
+                        if (response.data?.data?.codeExpired) {
+                            endTime = response.data?.data?.codeExpired;
+                        }
                         if (!dayjs().isBefore(endTimeFromDB)) {
                             setRemaining('');
                             setIsLoading(false);
@@ -64,7 +67,7 @@ const VerifyComponent = (props: TId) => {
 
         }, 1000);
         return () => clearInterval(timer);
-    }, [isRetry]);
+    }, [isRetry, id]);
 
     useEffect(() => {
         const email = localStorage.getItem('email');
@@ -73,9 +76,9 @@ const VerifyComponent = (props: TId) => {
             return;
         };
         return;
-    }, [])
+    }, [form])
 
-    const handleResendMail = async (values: any) => {
+    const handleResendMail = async (values: IResendMail) => {
         const { userEmail } = values;
         setIsRetry(true);
         try {
@@ -83,16 +86,23 @@ const VerifyComponent = (props: TId) => {
             if (response?.data?.statusCode === 201) {
                 setRemaining('');
             }
-        } catch (error: any) {
-            if (error.response.data.statusCode === 400) {
-                notification.error({
-                    message: 'Retry verification failed',
-                    description: error.response.data.message
-                })
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error?.response?.data?.statusCode === 400) {
+                    notification.error({
+                        message: 'Retry verification failed',
+                        description: error.response.data.message
+                    })
+                } else {
+                    notification.error({
+                        message: 'Retry verification failed',
+                        description: error?.response?.data?.message || 'Something went wrong' 
+                    })
+                }
             } else {
                 notification.error({
                     message: 'Retry verification failed',
-                    description: error?.response?.data?.message || 'Something went wrong' 
+                    description: 'Unexpected error'
                 })
             }
         } finally {
@@ -100,7 +110,7 @@ const VerifyComponent = (props: TId) => {
         }
     }
 
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: IVerifyAccount) => {
         const { _id, code } = values;
         setIsSubmit(true);
         try {
@@ -109,16 +119,23 @@ const VerifyComponent = (props: TId) => {
                 message.success('Verification successfully');
                 router.push('/auth/login');
             }
-        } catch (error: any) {
-            if (error.response.data.statusCode === 400) {
-                notification.error({
-                    message: 'Verification failed',
-                    description: error.response.data.message
-                })
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error?.response?.data?.statusCode === 400) {
+                    notification.error({
+                        message: 'Verification failed',
+                        description: error.response.data.message
+                    })
+                } else {
+                    notification.error({
+                        message: 'Verification failed',
+                        description: error?.response?.data?.message || 'Something went wrong'
+                    })
+                }
             } else {
                 notification.error({
                     message: 'Verification failed',
-                    description: error?.response?.data?.message || 'Something went wrong'
+                    description: 'Unexpected error'
                 })
             }
         } finally {
@@ -178,6 +195,7 @@ const VerifyComponent = (props: TId) => {
                 <Form
                     onFinish={onFinish}
                     className="verify-layout__form"
+                    form={form}
                 >
                     <Form.Item
                         hidden

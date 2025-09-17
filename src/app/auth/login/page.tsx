@@ -6,7 +6,7 @@ import { authenticate } from "@/utils/actions";
 import { App } from 'antd';
 import { useRouter } from "next/navigation";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import ModalResendMail from "@/components/auth/ResendMail";
+import ModalResendMail from "@/components/auth/ModalResendMail";
 
 const LoginPage = () => {
     const [ username, setUsername ] = useState('');
@@ -76,7 +76,9 @@ const LoginPage = () => {
 
     const handleSetUsername = (value: string) => {
         setUsername(value);
-        username ? setUsernameError('') : '';
+        if (username) {
+            setUsernameError('');
+        }
     }
 
     const handleSetPassword = (value: string) => {

@@ -3,32 +3,41 @@
 import AuthLayout from "@/components/auth/AuthComponent";
 import { registerAPI } from "@/services/api";
 import { App, ConfigProvider, Form, Input, Space } from "antd";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
     const router = useRouter();
     const { notification } = App.useApp();
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: IRegisterReq) => {
         const { name, username, password } = values;
         try {
             const response = await registerAPI(name, username, password);
             if (response?.data?.statusCode === 201) {
-                localStorage.setItem('endTime', response.data?.data?.codeExpired!);
+                if (response.data?.data?.codeExpired) {
+                    localStorage.setItem('endTime', response.data.data.codeExpired);
+                }
                 localStorage.setItem('email', username);
                 router.push(`/verify/${response?.data?.data?._id}`);
             }
-        } catch (error: any) {
-            console.log(error)
-            if (error?.response?.data?.statusCode === 400) {
-                notification.error({
-                    message: 'Register failed',
-                    description: error.response.data.message
-                })
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error?.response?.data?.statusCode === 400) {
+                    notification.error({
+                        message: 'Register failed',
+                        description: error.response.data.message
+                    })
+                } else {
+                    notification.error({
+                        message: 'Register failed',
+                        description: error?.response?.data?.message || 'Something went wrong' 
+                    })
+                }
             } else {
                 notification.error({
-                    message: 'Register failed',
-                    description: error?.response?.data?.message || 'Something went wrong' 
-                })
+                message: "Register failed",
+                description: "Unexpected error",
+                });
             }
         }
     };

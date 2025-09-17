@@ -1,10 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const AppPage = () => {
   return (
     <div className="splash-screen">
       <div className="splash-screen__left">
-        <img src="icons/logo.svg" alt="logo" className="splash-screen__left-logo" />
+        <Image width={77} height={51} src="icons/logo.svg" alt="logo" className="splash-screen__left-logo" />
         <h1 className="splash-screen__left-title">E-Learning</h1>
         <p>Welcome to the application</p>
       </div>

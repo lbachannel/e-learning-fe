@@ -1,13 +1,4 @@
-import { AuthError } from "next-auth";
-
-export class CustomAuthError extends AuthError{
-    static type: string;
-    constructor(message?: any) {
-        super();
-        this.type = message;
-    }
-
-}
+import { AuthError } from "@auth/core/errors";
 
 export class InvalidEmailPasswordError extends AuthError {
     static type = "Invalid credentials";

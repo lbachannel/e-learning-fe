@@ -1,5 +1,6 @@
 'use server'
 import {signIn} from "@/auth";
+import { InActivedAccountError, InvalidEmailPasswordError } from "./errors";
 
 export async function authenticate(username: string, password: string) {
     try {
@@ -9,15 +10,15 @@ export async function authenticate(username: string, password: string) {
             redirect: false,
         })
         return res;
-    } catch (error) {
-        if ((error as any).name === 'InvalidEmailPasswordError') {
+    } catch (error: unknown) {
+        if (error instanceof InvalidEmailPasswordError) {
             return {
-                error: (error as any).type,
+                error: InvalidEmailPasswordError.type,
                 code: 1,
             }
-        } else if ((error as any).name === 'InActivedAccountError') {
+        } else if (error instanceof InActivedAccountError) {
             return {
-                error: (error as any).type,
+                error: InActivedAccountError.type,
                 code: 2,
             }
         } else {

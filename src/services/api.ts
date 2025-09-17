@@ -16,7 +16,7 @@ export const registerAPI = (name: string, username: string, password: string) =>
     const data = {
         name, email: username, password
     }
-    return axios.post<IBackendRes<IRegister>>(URL_BACKEND, data);
+    return axios.post<IBackendRes<IRegisterRes>>(URL_BACKEND, data);
 }
 
 export const verifyAccountAPI = (_id: string, code: string) => {
@@ -24,7 +24,7 @@ export const verifyAccountAPI = (_id: string, code: string) => {
     const data = {
         _id, code
     }
-    return axios.post<IBackendRes<any>>(URL_BACKEND, data);
+    return axios.post<IBackendRes<void>>(URL_BACKEND, data);
 }
 
 export const getCodeExpired = (_id: string) => {
