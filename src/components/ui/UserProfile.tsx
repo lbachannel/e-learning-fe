@@ -4,15 +4,9 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-type TSession = {
-    session: Session | null
-}
-
-const UserProfile = (props: TSession) => {
+const UserProfile = ({ session }: { session: Session | null }) => {
     const [isOpen, setIsOpen] = useState(false);
     const username = useRef<HTMLSpanElement | null>(null);
-    const { session } = props;
-
 
     const handleClick = () => {
         setIsOpen(!isOpen);
