@@ -21,8 +21,7 @@ const RegisterPage = () => {
                     localStorage.setItem('endTime', response.data.data.codeExpired);
                 }
                 localStorage.setItem('email', username);
-                router.refresh();
-                router.push(`/verify/${response?.data?.data?._id}`);
+                window.location.href = `/verify/${response?.data?.data?._id}`;
             }
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
