@@ -23,7 +23,7 @@ export async function authenticate(username: string, password: string) {
             }
         } else {
             return {
-                error: 'Internal server error',
+                error: 'The server is currently overloaded, please try again in a few minutes.',
                 code: 0,
             }
         }

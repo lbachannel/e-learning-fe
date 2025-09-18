@@ -1741,6 +1741,16 @@ html.dark {
   filter: var(--header-dropdown-item-icon-color);
 }
 
+.spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
 .splash-screen {
   width: 100vw;
   height: 100vh;

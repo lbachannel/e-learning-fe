@@ -23,7 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         email: response?.data?.data?.user.email,
                         access_token: response?.data?.data?.access_token,
                     };
-                } catch (error) {
+                } catch (error: unknown) {
                     if (error instanceof AxiosError) {
                         const backendRes = error.response?.data as IBackendRes<ILogin>;
                         if (backendRes && +backendRes.statusCode === 401) {

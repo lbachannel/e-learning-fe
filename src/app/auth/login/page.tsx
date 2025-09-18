@@ -3,7 +3,7 @@ import AuthComponent from "@/components/auth/AuthComponent";
 import Link from "next/link";
 import { useState } from "react";
 import { authenticate } from "@/utils/actions";
-import { App } from 'antd';
+import { App, Spin } from 'antd';
 import { useRouter } from "next/navigation";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import ModalResendMail from "@/components/auth/ModalResendMail";
@@ -47,31 +47,38 @@ const LoginPage = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLoading(true);
         setUserEmail('');
         const isValid = validateData(username, password);
         if (isValid) {
-            setIsLoading(true);
             resetErrors();
             const response = await authenticate(username, password);
             if (response.error) {
                 setIsLoading(false);
-                if (response.code === 2) {
+                if (response.code === 1) {
+                    notification.error({
+                        message: 'Login failed',
+                        description: response.error
+                    })
+                    return;
+                } else if (response.code === 2) {
                     setIsLoading(false);
                     setIsModalOpen(true);
                     setUserEmail(username);
                     return;
+                } else {
+                    notification.error({
+                        message: 'Login failed',
+                        description: response.error
+                    })
+                    return;
                 }
-                notification.error({
-                    message: 'Login failed',
-                    description: response.error
-                })
-
             } else {
-                setIsLoading(false);
                 message.success('Login successfully');
                 router.push('/intro');
             }
         }
+        setIsLoading(false);
     }
 
     const handleSetUsername = (value: string) => {
@@ -90,6 +97,11 @@ const LoginPage = () => {
 
     return (
         <>
+            {isLoading &&
+                <div className="spinner-overlay">
+                <Spin />
+                </div>
+            }
             <AuthComponent title="Login">
                 <form className="auth-layout__form" onSubmit={handleSubmit}>
                     <input

@@ -2,14 +2,17 @@
 
 import AuthLayout from "@/components/auth/AuthComponent";
 import { registerAPI } from "@/services/api";
-import { App, ConfigProvider, Form, Input, Space } from "antd";
+import { App, ConfigProvider, Form, Input, Space, Spin } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const RegisterPage = () => {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const { notification } = App.useApp();
     const onFinish = async (values: IRegisterReq) => {
+        setIsLoading(true);
         const { name, username, password } = values;
         try {
             const response = await registerAPI(name, username, password);
@@ -35,14 +38,21 @@ const RegisterPage = () => {
                 }
             } else {
                 notification.error({
-                message: "Register failed",
-                description: "Unexpected error",
+                    message: "Register failed",
+                    description: "Unexpected error",
                 });
             }
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
         <AuthLayout title="Register account">
+            {isLoading &&
+                <div className="spinner-overlay">
+                    <Spin />
+                </div>
+            }
             <Form
                 className={'auth-layout__register'}
                 onFinish={onFinish}
