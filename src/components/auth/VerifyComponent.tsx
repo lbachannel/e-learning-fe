@@ -11,10 +11,12 @@ import { SyncOutlined } from "@ant-design/icons";
 import axios from "axios";
 dayjs.extend(duration);
 
-interface VerifyComponentProps {
+type TId = {
     id: string;
 }
-const VerifyComponent = ({ id }: VerifyComponentProps) => {
+
+const VerifyComponent = (props: TId) => {
+    const { id } = props;
     const router = useRouter();
     const { notification, message } = App.useApp();
     const [remaining, setRemaining] = useState('00:00');

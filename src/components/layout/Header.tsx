@@ -6,7 +6,12 @@ import Logo from "../ui/Logo";
 import SearchForm from "../ui/Search";
 import UserProfile from "../ui/UserProfile";
 
-const HeaderLayout = ({ session }: { session: Session | null }) => {
+type TSession = {
+    session: Session | null
+}
+
+const HeaderLayout = (props: TSession) => {
+    const { session } = props;
 
     return (
         <header className="header">
