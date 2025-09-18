@@ -1,5 +1,3 @@
-'use client';
-
 import VerifyComponent from "@/components/auth/VerifyComponent";
 
 const VerifyPage = ({ params }: { params: { id: string } }) => {
