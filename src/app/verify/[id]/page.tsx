@@ -1,13 +1,7 @@
 import VerifyComponent from "@/components/auth/VerifyComponent";
 
-interface VerifyPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const VerifyPage = ({ params }: VerifyPageProps) => {
-    const { id } = params;
+const VerifyPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     return (
         <VerifyComponent id={id} />
     )
