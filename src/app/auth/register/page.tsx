@@ -11,7 +11,8 @@ const RegisterPage = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const { notification } = App.useApp();
-    const onFinish = async (values: IRegisterReq) => {
+    const onFinish = async (e: React.FormEvent, values: IRegisterReq) => {
+        e.preventDefault();
         setIsLoading(true);
         const { name, username, password } = values;
         try {
@@ -63,7 +64,7 @@ const RegisterPage = () => {
             }
             <Form
                 className={'auth-layout__register'}
-                onFinish={onFinish}
+                onFinish={() => onFinish}
                 autoComplete="on"
             >
                 <Form.Item
