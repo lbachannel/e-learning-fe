@@ -11,8 +11,7 @@ const RegisterPage = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const { notification } = App.useApp();
-    const onFinish = async (e: React.FormEvent, values: IRegisterReq) => {
-        e.preventDefault();
+    const onFinish = async (values: IRegisterReq) => {
         setIsLoading(true);
         const { name, username, password } = values;
         try {
@@ -22,15 +21,8 @@ const RegisterPage = () => {
                     localStorage.setItem('endTime', response.data.data.codeExpired);
                 }
                 localStorage.setItem('email', username);
-                const userId = response?.data?.data?._id;
-                if (userId) {
-                    router.push(`/verify/${userId}`);
-                } else {
-                    notification.error({
-                        message: "Registration successful, but no user ID received.",
-                        description: "Please check your API response.",
-                    });
-                }
+                router.refresh();
+                router.push(`/verify/${response?.data?.data?._id}`);
             }
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -64,7 +56,7 @@ const RegisterPage = () => {
             }
             <Form
                 className={'auth-layout__register'}
-                onFinish={() => onFinish}
+                onFinish={onFinish}
                 autoComplete="on"
             >
                 <Form.Item
