@@ -143,7 +143,7 @@ const VerifyComponent = ({ id }: VerifyComponentProps) => {
     return (
         <div className="verify-layout">
             <h1 className="verify-layout__title">PLEASE VERIFY YOUR ACCOUNT</h1>
-            <div className="verify-layout__wrapper-img">
+            {/* <div className="verify-layout__wrapper-img">
                 <Image
                     src="/images/email.png"
                     width={70}
@@ -217,7 +217,7 @@ const VerifyComponent = ({ id }: VerifyComponentProps) => {
                     </div>
 
                 </Form>
-            </div>
+            </div> */}
         </div>
     )
 }
