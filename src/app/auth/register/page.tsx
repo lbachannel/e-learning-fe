@@ -21,8 +21,15 @@ const RegisterPage = () => {
                     localStorage.setItem('endTime', response.data.data.codeExpired);
                 }
                 localStorage.setItem('email', username);
-                router.refresh();
-                router.push(`@/verify/${response?.data?.data?._id}`);
+                const userId = response?.data?.data?._id;
+                if (userId) {
+                    router.push(`/verify/${userId}`);
+                } else {
+                    notification.error({
+                        message: "Registration successful, but no user ID received.",
+                        description: "Please check your API response.",
+                    });
+                }
             }
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
