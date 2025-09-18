@@ -1,5 +1,5 @@
-export { auth as middleware } from "@/auth";
-
+import { auth as middleware } from "@/auth";
+export default middleware;
 
 // import { NextResponse } from 'next/server'
 // import type { NextRequest } from 'next/server'
