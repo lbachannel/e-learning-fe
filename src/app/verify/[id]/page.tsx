@@ -1,6 +1,12 @@
 import VerifyComponent from "@/components/auth/VerifyComponent";
 
-const VerifyPage = ({ params }: { params: { id: string } }) => {
+interface VerifyPageProps {
+  params: {
+    id: string;
+  };
+}
+
+const VerifyPage = ({ params }: VerifyPageProps) => {
     const { id } = params;
     return (
         <VerifyComponent id={id} />
