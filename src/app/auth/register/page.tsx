@@ -6,6 +6,7 @@ import { App, ConfigProvider, Form, Input, Space, Spin } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { redirect } from 'next/navigation';
 
 const RegisterPage = () => {
     const router = useRouter();
@@ -21,7 +22,8 @@ const RegisterPage = () => {
                     localStorage.setItem('endTime', response.data.data.codeExpired);
                 }
                 localStorage.setItem('email', username);
-                window.location.href = `/verify/${response?.data?.data?._id}`;
+                redirect(`/verify/${response?.data?.data?._id}`);
+
             }
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
